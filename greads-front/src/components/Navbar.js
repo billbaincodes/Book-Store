@@ -4,6 +4,8 @@ import '../App.css';
 import logo from '../assets/logo.png'
 
 class Navbar extends Component {
+
+
   render() {
     return (
       <nav className="header">
@@ -12,8 +14,8 @@ class Navbar extends Component {
           <h4 className="headerLogo">gReads</h4>
         </div>
         <section className="navBar">
-          <Link to='/'> Books </Link>
-          <Link to='/skills'> Authors </Link>
+          <Link to='/books'> Books </Link>
+          <Link to='/authors'> Authors </Link>
         </section>
       </nav>
     );
