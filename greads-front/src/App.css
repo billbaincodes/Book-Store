@@ -65,3 +65,16 @@
   display:flex;
   align-items: center;
 }
+
+.book {
+  border: 1px solid black;
+  display: flex;
+  width: 750px;
+  padding: 10px;
+  margin: 3em;
+}
+
+
+.book > img {
+  height: 300px;
+}
