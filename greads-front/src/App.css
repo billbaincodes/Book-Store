@@ -74,7 +74,10 @@
   margin: 3em;
 }
 
-
 .book > img {
   height: 300px;
+}
+
+.new-book {
+  border: 1px solid black;
 }
