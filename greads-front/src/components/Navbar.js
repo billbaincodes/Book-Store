@@ -1,0 +1,23 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import '../App.css';
+import logo from '../assets/logo.png'
+
+class Navbar extends Component {
+  render() {
+    return (
+      <nav className="header">
+        <div className="logo-header">
+          <img className="logo" src={logo} alt="gReads"></img>
+          <h4 className="headerLogo">gReads</h4>
+        </div>
+        <section className="navBar">
+          <Link to='/'> Books </Link>
+          <Link to='/skills'> Authors </Link>
+        </section>
+      </nav>
+    );
+  }
+}
+
+export default Navbar;
