@@ -1,24 +1,32 @@
 import React, { Component } from "react";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class SingleBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editToggle: false
+      bookInfo: []
     };
   }  
+
+  componentDidMount(){
+    fetch(`http://localhost:3333/books/${this.props.match.params.id}`)
+    .then(response => response.json())
+    .then(json => this.setState({ bookInfo : json.book }))
+  }
+
 
   render() {
     return (
       <div className="book">
         <div className="book-info">
-          <h3>{this.props.location.state.singleBook.title}</h3>
-          <p>{this.props.location.state.singleBook.genre}</p>
-          <p>{this.props.location.state.singleBook.description}</p>
+          <h3>{this.state.bookInfo.title}</h3>
+          <p>{this.state.bookInfo.genre}</p>
+          <p>{this.state.bookInfo.description}</p>
+          <Link to="/books"><button>Back to All Books</button></Link>
         </div>
-        <img className ="book-cover" src={this.props.location.state.singleBook.coverURL} alt="book cover" />
+        <img className ="book-cover" src={this.state.bookInfo.coverURL} alt="book cover" />
       </div>
     );
   }

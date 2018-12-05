@@ -32,7 +32,7 @@ class Author extends Component {
           <p>{this.props.author.bio}</p>
           <ul> Books by {this.props.author.first}
           {this.state.booksByAuthor.map(book => (
-            <a href={`http://localhost:3333/books/${book.id}`}>{book.title}</a>
+            <a href={`http://localhost:3000/books/${book.id}`}>{book.title}</a>
           ))}
           </ul>
         </div>
