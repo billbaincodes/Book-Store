@@ -32,7 +32,6 @@ class BookList extends Component {
   render() {
     return (
       <div>
-        <h3>this is a list of all books</h3>
         <button onClick={this.addBookToggle}>New Book</button>
         {this.state.addBook ? (
           <AddBook

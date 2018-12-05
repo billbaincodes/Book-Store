@@ -1,39 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
 
+class Book extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editToggle: false
+    };
+  }
 
-const Book = ({ book, bookFetcher }) => {
-
-  const deleteBook = () => {
-
-    console.log(book.id)
-
-    fetch(`https://dry-atoll-97913.herokuapp.com/books/${book.id}`, {
+  deleteBook = () => {
+    console.log(this.props.book)
+    fetch(`https://dry-atoll-97913.herokuapp.com/books/${this.props.book.id}`, {
       method: "DELETE",
       mode: "cors",
       headers: {
         "Content-Type": "application/json"
       }
     })
-      .then(bookFetcher)
-      .catch(console.log("error"))
-  }
+      .then(this.props.bookFetcher)
+      .catch(console.log("error"));
+  };
 
-
+  render() {
     return (
-      
       <div className="book">
-        <div className='book-info'>
-          <h3>{book.title}</h3>
-          <p>{book.genre}</p>
-          <p>{book.description}</p>
-          <button onClick={deleteBook}>Delete book</button>
+        <div className="book-info">
+          <h3>{this.props.book.title}</h3>
+          <p>{this.props.book.genre}</p>
+          <p>{this.props.book.description}</p>
+          <button onClick={this.deleteBook}>Delete book</button>
+
+          <Link to={{ pathname: '/edit', state: { currentBook : this.props.book} }}><button> Edit book </button></Link>
         </div>
-        <img src={book.coverURL} alt="book cover"/>
+        <img className ="book-cover" src={this.props.book.coverURL} alt="book cover" />
       </div>
-
-
     );
+  }
 }
 
 export default Book;
