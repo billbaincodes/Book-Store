@@ -23,11 +23,13 @@ class Book extends Component {
       .catch(console.log("error"));
   };
 
+
+
   render() {
     return (
       <div className="book">
         <div className="book-info">
-          <h3>{this.props.book.title}</h3>
+        <Link to={{ pathname: `/books/${this.props.book.id}`, state: { singleBook : this.props.book} }}><h3>{this.props.book.title}</h3></Link>
           <p>{this.props.book.genre}</p>
           <p>{this.props.book.description}</p>
           <button onClick={this.deleteBook}>Delete book</button>

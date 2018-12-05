@@ -51,7 +51,6 @@
   cursor: pointer;
   outline: inherit;
   margin-left: 2em;
-  transition: 1s;
 }
 
 .logo {
@@ -109,6 +108,5 @@
 }
 
 a {
-  color: black;
   text-decoration: none;
 }

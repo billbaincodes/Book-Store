@@ -15,7 +15,6 @@ class Navbar extends Component {
           <h4 className="headerLogo">gReads</h4>
         </div>
       </Link>
-
         <section className="navBar">
           <Link to='/books'> Books </Link>
           <Link to='/authors'> Authors </Link>
