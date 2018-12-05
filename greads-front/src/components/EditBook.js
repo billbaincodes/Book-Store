@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import "../App.css";
 
-class AddBook extends Component {
+class EditBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleVal: "",
-      genreVal: "",
-      descrVal: "",
-      coverVal: ""
+      titleVal: this.props.location.state.currentBook.title,
+      genreVal: this.props.location.state.currentBook.genre,
+      descrVal: this.props.location.state.currentBook.description,
+      coverVal: this.props.location.state.currentBook.coverURL,
+      currentBook: undefined
     };
   }
 
@@ -32,8 +33,9 @@ class AddBook extends Component {
     console.log(this.state.coverVal);
   };
 
-  postBook = event => {
+  updateBook = event => { 
     event.preventDefault();
+    console.log(this.props.location.state.currentBook.id)
 
     if (
       this.state.titleVal.length === 0 ||
@@ -43,28 +45,29 @@ class AddBook extends Component {
     ) {
       alert("Bogus input");
     } else {
-      fetch("https://dry-atoll-97913.herokuapp.com/books", {
-        method: "POST",
+      fetch(`https://dry-atoll-97913.herokuapp.com/books/${this.props.location.state.currentBook.id}`, {
+        method: "PUT",
         mode: "cors",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+          // id: this.props.location.state.currentBook.id,
           title: this.state.titleVal,
           genre: this.state.genreVal,
           description: this.state.descrVal,
           coverURL: this.state.coverVal
         })
       })
-        .then(this.props.addBookToggle)
-        .then(this.props.bookFetcher);
+        .then(data => console.log(data))
+        // .then(window.location.replace("http://localhost:3000/books/"))
     }
   };
 
   render() {
     return (
       <div className="new-book">
-        <h3>Add a new book.</h3>
+        <h3>Update a Book</h3>
         <form>
           <label>Title</label>
           <input
@@ -88,15 +91,15 @@ class AddBook extends Component {
           <input
             onChange={this.coverURLListener}
             type="text"
-            value={this.state.coverVal}
+            defaultValue={this.props.location.state.currentBook.coverURL}
           />
           <br />
           <br />
-          <button onClick={this.postBook}>Submit</button>
+          <button onClick={this.updateBook}>Submit Edits</button>
         </form>
       </div>
     );
   }
 }
 
-export default AddBook;
+export default EditBook;
