@@ -10,9 +10,11 @@ const Home = () => {
         </div>
       </Link>
 
-      <div className="splash-card fade">
-        <h3>Authors</h3>
-      </div>
+      <Link to="/authors">
+        <div className="splash-card">
+          <h3>Authors</h3>
+        </div>
+      </Link>
     </aside>
   );
 };
