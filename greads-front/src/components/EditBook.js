@@ -45,7 +45,7 @@ class EditBook extends Component {
     ) {
       alert("Bogus input");
     } else {
-      fetch(`https://dry-atoll-97913.herokuapp.com/books/${this.props.location.state.currentBook.id}`, {
+      fetch(`http://localhost:3333/books/${this.props.location.state.currentBook.id}`, {
         method: "PUT",
         mode: "cors",
         headers: {
@@ -60,7 +60,7 @@ class EditBook extends Component {
         })
       })
         .then(data => console.log(data))
-        // .then(window.location.replace("http://localhost:3000/books/"))
+        .then(window.location.replace("http://localhost:3000/books/"))
     }
   };
 

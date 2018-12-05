@@ -13,7 +13,7 @@ class BookList extends Component {
   }
 
   bookFetcher = () => {
-    fetch("https://dry-atoll-97913.herokuapp.com/books")
+    fetch("http://localhost:3333/books")
       .then(response => response.json())
       .then(json => {
         this.setState({ bookList: json.books });
@@ -39,7 +39,7 @@ class BookList extends Component {
             addBookToggle={this.addBookToggle}
           />
         ) : (
-          console.log("false")
+          ''
         )}
         {this.state.bookList.map(book => (
           <Book 

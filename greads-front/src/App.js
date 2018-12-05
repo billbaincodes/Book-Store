@@ -7,6 +7,7 @@ import BookList from './components/BookList.js'
 import EditBook from './components/EditBook.js'
 import AuthorList from './components/AuthorList.js'
 import SingleBook from './components/SingleBook.js'
+import SingleAuthor from './components/SingleAuthor.js'
 
 
 class App extends Component {
@@ -19,8 +20,9 @@ class App extends Component {
           <Navbar />
           <Route path="/" component={Home} exact/>
           <Route path="/books" component={BookList} exact/>
-          <Route path="/authors" component={AuthorList} />
+          <Route path="/authors" component={AuthorList} exact/>
           <Route path="/books/:id" component={SingleBook} />
+          <Route path="/authors/:id" component={SingleAuthor} />
           <Route path="/edit" component={EditBook} exact/>
         </div>
       </BrowserRouter>

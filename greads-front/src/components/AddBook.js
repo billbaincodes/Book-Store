@@ -43,7 +43,7 @@ class AddBook extends Component {
     ) {
       alert("Bogus input");
     } else {
-      fetch("https://dry-atoll-97913.herokuapp.com/books", {
+      fetch("http://localhost:3333/books", {
         method: "POST",
         mode: "cors",
         headers: {
