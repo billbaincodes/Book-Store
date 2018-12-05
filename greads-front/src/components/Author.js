@@ -11,10 +11,21 @@ class Author extends Component {
     };
   }
 
+  deleteAuthor = () => {
+    console.log(this.props.author.id);
+    fetch(`http://localhost:3333/authors/${this.props.author.id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(this.props.authorFetcher)
+      .catch(console.log("error"));
+  };
+
   booksByAuthorFetcher = () => {
-    fetch(
-      `http://localhost:3333/details/author/${this.props.author.id}`
-    )
+    fetch(`http://localhost:3333/details/author/${this.props.author.id}`)
       .then(response => response.json())
       .then(data => this.setState({ booksByAuthor: data.details }));
   };
@@ -27,13 +38,22 @@ class Author extends Component {
     return (
       <div className="book">
         <div className="book-info">
-          <h3>{this.props.author.first} {this.props.author.last}</h3>
+        <Link to={{ pathname: `/authors/${this.props.author.id}`, state: { singleBook : this.props.author} }}> <h3>
+            {this.props.author.first} {this.props.author.last}
+          </h3>
+          </Link>
           <p>{this.props.author.genre}</p>
           <p>{this.props.author.bio}</p>
-          <ul> Books by {this.props.author.first}
-          {this.state.booksByAuthor.map(book => (
-            <a href={`http://localhost:3333/books/${book.id}`}>{book.title}</a>
-          ))}
+          <button onClick={this.deleteAuthor}>Delete Author</button>
+          <ul>
+            Books by {this.props.author.first}
+            {this.state.booksByAuthor.map(book => (
+              <li>
+                <a href={`http://localhost:3000/books/${book.id}`}>
+                  {book.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
         <img
